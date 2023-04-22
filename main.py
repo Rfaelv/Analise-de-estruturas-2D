@@ -1,13 +1,14 @@
 from model import Model
-from anest import Anest
+import anest
 
 
-# backbone
-model = Model(path='input.json')
-# model.plot()
-anest = Anest(model)
-anest.createSystem()
-print(model.SG0)
-# anest.solveSystem()
-# anest.calcLoads()
-# anest.plotResults()
+model = Model('input.json')
+model.plot()
+anest.createSystem(model)
+anest.solveSystem(model)
+anest.calcInternLoads(model)
+anest.calcReactions(model)
+model.plotNFD(0.01)
+model.plotSFD(0.01)
+model.plotBMD(0.01, 10)
+model.plotDisplacement(100, 10)
